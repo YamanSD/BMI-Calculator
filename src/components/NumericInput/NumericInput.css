@@ -1,0 +1,51 @@
+html {
+    font-family: sans-serif;
+}
+
+.formContainer {
+    position: relative;
+    padding: 15px;
+    margin-top: 5px;
+}
+
+.formField {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #d2d2d2;
+    outline: 0;
+    font-size: 16px;
+    color: #212121;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.formField::placeholder {
+    color: transparent;
+}
+
+.formField:placeholder-shown ~ .form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 20px;
+}
+
+label,
+.formField:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.formField:focus ~ .form__label {
+    color: #009788;
+}
+
+.formField:focus {
+    padding-bottom: 6px;
+    border-bottom: 2px solid #009788;
+}
