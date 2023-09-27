@@ -8,7 +8,7 @@ import styles from "./NumericInput.module.css";
  */
 type Properties = {
     value: string,
-    setValue:  React.Dispatch<React.SetStateAction<string>>,
+    setValue: (value: string) => void,
     label: string,
     unit: string,
     isValid?: (value: string) => boolean,
