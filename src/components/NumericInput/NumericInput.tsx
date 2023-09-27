@@ -54,6 +54,9 @@ const NumericInput = ({ label, unit, className,
                 {/* input field */}
                 <input type={"number"}
                        value={value}
+                       style={{
+                           color: error.length !== 0 ? "red" : undefined
+                       }}
                        onChange={(event) => {
                            /* taken from user */
                            const newValue = event.target.value;
