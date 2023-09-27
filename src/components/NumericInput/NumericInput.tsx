@@ -38,8 +38,11 @@ const NumericInput = ({ label, unit, className,
             <input type={"number"}
                    value={value}
                    onChange={(event) => {
-                       if (!isValid || isValid(value)) {
-                           setValue(event.target.value);
+                       /* taken from user */
+                       const newValue = event.target.value;
+
+                       if (!isValid || isValid(newValue)) {
+                           setValue(newValue);
                        }
                    }}
                    id={"inputField"}
