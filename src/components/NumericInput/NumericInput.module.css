@@ -58,7 +58,7 @@ label,
 }
 
 .form__field:focus ~ .unit__label {
-    color: #009788
+    color: #009792
 }
 
 .form__label {
@@ -73,11 +73,11 @@ label,
 }
 
 .form__field:focus ~ .form__label {
-    color: #009788;
+    color: #009792;
 }
 
 .form__container:focus-within {
-    border-bottom: 2px solid #009788;
+    border-bottom: 2px solid #009792;
     transition: 0.3s;
 }
 
