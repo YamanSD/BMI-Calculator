@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./NumericInput.module.css";
 
 /**
@@ -11,6 +11,7 @@ type Properties = {
     setValue: (value: string) => void,
     label: string,
     unit: string,
+    generateErrorMsg?: (value: string) => string,
     isValid?: (value: string) => boolean,
     className?: string
 }
@@ -26,12 +27,27 @@ type Properties = {
  * @param unit displayed at the end of the input field.
  *        Indicates the unit of the input value.
  *        Default is an empty string.
+ * @param generateErrorMsg takes an invalid value, returns an error message to the
+ *        user based on it.
+ *        This function is called iff the isValid test fails.
+ *        Default generates an Invalid value message.
  * @param value to pass the state to the parent component.
  * @param setValue state setter, modifies value.
  * @constructor
  */
 const NumericInput = ({ label, unit, className,
-                          value, setValue, isValid}: Properties) => {
+                          value, setValue, isValid,
+                            generateErrorMsg }: Properties) => {
+    /* state of the current error.
+     * Empty indicates no error.
+     */
+    const [error, setError] = useState<string>("");
+
+    /* set the default value for the generateErrorMsg */
+    if (generateErrorMsg === undefined) {
+        generateErrorMsg = (ignored: string) => "Invalid value";
+    }
+
     return (
         <div className={`${styles.form__container} ${className}`}>
             {/* input field */}
@@ -43,6 +59,14 @@ const NumericInput = ({ label, unit, className,
 
                        if (!isValid || isValid(newValue)) {
                            setValue(newValue);
+
+                           if (error.length !== 0) {
+                               setError("");
+                           }
+                       } else {
+                           if (generateErrorMsg) { // unnecessary check, used to suppress IDE
+                               setError(generateErrorMsg(value));
+                           }
                        }
                    }}
                    id={"inputField"}
