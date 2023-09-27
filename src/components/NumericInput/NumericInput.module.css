@@ -45,6 +45,10 @@ label,
     color: #9b9b9b;
 }
 
+.form__field:focus ~ .unit__label {
+    color: #009788
+}
+
 .form__label {
     font-weight: 500;
 }
