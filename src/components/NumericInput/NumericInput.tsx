@@ -1,5 +1,5 @@
 import React from "react";
-import StaticStyles from "./NumericInput.module.css";
+import styles from "./NumericInput.module.css";
 
 /**
  * Prop-type for the NumericInput component.
@@ -31,7 +31,8 @@ type Properties = {
 const NumericInput = ({ label, unit, className,
                           value, setValue, isValid}: Properties) => {
     return (
-        <div className={`${StaticStyles.form__container} ${className}`}>
+        <div className={`${styles.form__container} ${className}`}>
+            {/* input field */}
             <input type={"number"}
                    value={value}
                    onChange={(event) => {
@@ -40,11 +41,18 @@ const NumericInput = ({ label, unit, className,
                        }
                    }}
                    id={"inputField"}
-                   className={StaticStyles.form__field}
+                   className={styles.form__field}
                    placeholder={label} />
 
-            <label className={StaticStyles.form__label}>
+            {/* animated label */}
+            <label id={"mainLabel"}
+                   className={styles.form__label}>
                 {label}
+            </label>
+
+            {/* unit label */}
+            <label className={styles.unit__label}>
+                {unit}
             </label>
         </div>
     );

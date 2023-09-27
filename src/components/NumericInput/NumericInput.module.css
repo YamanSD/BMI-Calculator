@@ -3,7 +3,10 @@ html {
 }
 
 .form__container {
+    display: flex;
     position: relative;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 0 0;
     margin-top: 10px;
     border-bottom: 1px solid #d2d2d2;
@@ -40,6 +43,17 @@ label,
     transition: 0.2s;
     font-size: 12px;
     color: #9b9b9b;
+}
+
+.form__label {
+    font-weight: 500;
+}
+
+.unit__label {
+    position: relative;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 5px;
 }
 
 .form__field:focus ~ .form__label {
