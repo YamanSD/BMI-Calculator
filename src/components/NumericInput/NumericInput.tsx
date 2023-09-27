@@ -49,40 +49,51 @@ const NumericInput = ({ label, unit, className,
     }
 
     return (
-        <div className={`${styles.form__container} ${className}`}>
-            {/* input field */}
-            <input type={"number"}
-                   value={value}
-                   onChange={(event) => {
-                       /* taken from user */
-                       const newValue = event.target.value;
+        <div className={styles.main__container}>
+            <div className={`${styles.form__container} ${className}`}>
+                {/* input field */}
+                <input type={"number"}
+                       value={value}
+                       onChange={(event) => {
+                           /* taken from user */
+                           const newValue = event.target.value;
 
-                       if (!isValid || isValid(newValue)) {
                            setValue(newValue);
 
-                           if (error.length !== 0) {
-                               setError("");
+                           if (!isValid || isValid(newValue)) {
+                               if (error.length !== 0) {
+                                   setError("");
+                               }
+                           } else {
+                               if (generateErrorMsg) { // unnecessary check, used to suppress IDE
+                                   setError(generateErrorMsg(value));
+                               }
                            }
-                       } else {
-                           if (generateErrorMsg) { // unnecessary check, used to suppress IDE
-                               setError(generateErrorMsg(value));
-                           }
-                       }
-                   }}
-                   id={"inputField"}
-                   className={styles.form__field}
-                   placeholder={label} />
+                       }}
+                       id={"inputField"}
+                       className={styles.form__field}
+                       placeholder={label} />
 
-            {/* animated label */}
-            <label id={"mainLabel"}
-                   className={styles.form__label}>
-                {label}
-            </label>
+                {/* animated label */}
+                <label className={styles.form__label}>
+                    {label}
+                </label>
 
-            {/* unit label */}
-            <label className={styles.unit__label}>
-                {unit}
-            </label>
+                {/* unit label */}
+                <label className={styles.unit__label}>
+                    {unit}
+                </label>
+            </div>
+
+            {/* error label */}
+            {error.length !== 0 ?
+                <div className={styles.error__container}>
+                    <label className={styles.form__error}>
+                        {error}
+                    </label>
+                </div>
+                : null
+            }
         </div>
     );
 };

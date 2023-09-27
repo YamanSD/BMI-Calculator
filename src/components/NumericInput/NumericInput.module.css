@@ -5,7 +5,13 @@
     align-items: center;
     padding: 15px 0 0;
     margin-top: 10px;
-    border-bottom: 1px solid #d2d2d2;
+    border-bottom: 2px solid #d2d2d2;
+    margin-bottom: 0;
+}
+
+.main__container {
+    width: fit-content;
+    height: fit-content;
 }
 
 .form__field {
@@ -18,7 +24,7 @@
     color: #212121;
     padding: 7px 0;
     background: transparent;
-    transition: border-color 0.2s;
+    transition: border-color 0.3s;
 }
 
 .form__field::placeholder {
@@ -36,7 +42,7 @@ label,
     position: absolute;
     top: 0;
     display: block;
-    transition: 0.2s;
+    transition: 0.3s;
     font-size: 12px;
     color: #9b9b9b;
 }
@@ -46,7 +52,7 @@ label,
     position: absolute;
     top: 0;
     display: block;
-    transition: 0.2s;
+    transition: 0.3s;
     font-size: 12px;
     color: #9b9b9b;
 }
@@ -72,5 +78,22 @@ label,
 
 .form__container:focus-within {
     border-bottom: 2px solid #009788;
-    transition: 0.1s;
+    transition: 0.3s;
+}
+
+.form__error {
+    color: red;
+    width: fit-content;
+    position: relative;
+    font-weight: 500;
+}
+
+.error__container {
+    padding-left: 20px;
+    margin-top: 3px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    height: fit-content;
+    width: fit-content;
 }
