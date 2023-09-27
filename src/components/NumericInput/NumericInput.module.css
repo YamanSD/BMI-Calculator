@@ -6,13 +6,14 @@ html {
     position: relative;
     padding: 15px 0 0;
     margin-top: 10px;
+    border-bottom: 1px solid #d2d2d2;
 }
 
 .form__field {
+    font-weight: 600;
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 1px solid #d2d2d2;
     outline: 0;
     font-size: 16px;
     color: #212121;
@@ -45,7 +46,7 @@ label,
     color: #009788;
 }
 
-.form__field:focus {
-    padding-bottom: 6px;
+.form__container:focus-within {
     border-bottom: 2px solid #009788;
+    transition: 0.1s;
 }
