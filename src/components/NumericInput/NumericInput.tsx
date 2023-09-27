@@ -16,6 +16,8 @@ type Properties = {
 }
 
 /**
+ * Custom input component that accepts numbers only.
+ *
  * @param className passed to the component main container.
  * @param isValid takes the value, returns true if it is valid.
  *        Default does not check input.
