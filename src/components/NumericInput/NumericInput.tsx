@@ -17,7 +17,8 @@ type Properties = {
 }
 
 /**
- * Custom input component that accepts numbers only.
+ * Custom input component that warns the user if they provide invalid
+ * numerical input. It does not prevent invalid input, only informs.
  *
  * @param className passed to the component main container.
  * @param isValid takes the value, returns true if it is valid.
@@ -56,7 +57,7 @@ const NumericInput = ({ label, unit, className,
         <div className={styles.main__container}>
             <div className={`${styles.form__container} ${className}`}>
                 {/* input field */}
-                <input type={"number"}
+                <input type={"text"}
                        value={value}
                        style={{
                            color: error.length !== 0 ? "red" : undefined
