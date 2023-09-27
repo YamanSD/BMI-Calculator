@@ -21,6 +21,10 @@ type Properties = {
  *
  * @param className passed to the component main container.
  * @param isValid takes the value, returns true if it is valid.
+ *        Regardless of its return value, the given state variable
+ *        is modified.
+ *        The job of this function is informing the user
+ *        of an error, not prevention.
  *        Default does not check input.
  * @param label placeholder; displayed above the input field on selection.
  *        Returns to its place on blur, iff the user provided no input.
@@ -59,9 +63,7 @@ const NumericInput = ({ label, unit, className,
                        }}
                        onChange={(event) => {
                            /* taken from user */
-                           const newValue = event.target.value;
-
-                           setValue(newValue);
+                           const newValue: string = event.target.value;
 
                            if (!isValid || isValid(newValue)) {
                                if (error.length !== 0) {
@@ -69,9 +71,11 @@ const NumericInput = ({ label, unit, className,
                                }
                            } else {
                                if (generateErrorMsg) { // unnecessary check, used to suppress IDE
-                                   setError(generateErrorMsg(value));
+                                   setError(generateErrorMsg(newValue));
                                }
                            }
+
+                           setValue(newValue);
                        }}
                        id={"inputField"}
                        className={styles.form__field}
