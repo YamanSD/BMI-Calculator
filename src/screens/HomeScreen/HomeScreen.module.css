@@ -1,3 +1,7 @@
+:root {
+    --bmi-label-color: #007570;
+}
+
 .screen {
     width: 100vw;
     height: 100vh;
@@ -18,10 +22,25 @@
     margin-bottom: 20px;
 }
 
+.bmi__container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bmi__value {
+    font-size: xx-large;
+    font-weight: bold;
+    color: var(--bmi-label-color);
+}
+
 .button__container {
     justify-content: space-evenly;
     display: flex;
-    margin-top: 35px;
+    margin-top: 15px;
     width: 100%;
 }
 
