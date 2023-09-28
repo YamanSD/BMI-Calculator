@@ -15,7 +15,7 @@ const HomeScreen = () => {
     const [height, setHeight] = useState<string>("");
 
     return (
-        <>
+        <div className={styles.screen}>
             <div className={styles.app__bar}>
                 <h2 className={styles.bar__title}>
                     BMI.net
@@ -52,7 +52,7 @@ const HomeScreen = () => {
                     </button>
                 </div>
            </div>
-        </>
+        </div>
     );
 };
 
