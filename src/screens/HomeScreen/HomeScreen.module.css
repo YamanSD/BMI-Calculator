@@ -21,6 +21,7 @@
 .button__container {
     justify-content: space-evenly;
     display: flex;
+    margin-top: 35px;
     width: 100%;
 }
 

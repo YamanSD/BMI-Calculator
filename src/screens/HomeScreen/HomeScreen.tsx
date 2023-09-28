@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./HomeScreen.module.css";
-import {NumericInput} from "../../components";
+import {AnimatedButton, NumericInput} from "../../components";
 import {generateNumericInputErr, isPositive} from "../../services";
 
 /**
@@ -13,6 +13,14 @@ const HomeScreen = () => {
 
     /* state for the height of the user, in meters */
     const [height, setHeight] = useState<string>("");
+
+    /**
+     * Clears the height and weight fields.
+     */
+    const onClickClear = () => {
+        setWeight('');
+        setHeight('');
+    }
 
     return (
         <div className={styles.screen}>
@@ -27,7 +35,7 @@ const HomeScreen = () => {
                                   setValue={setWeight}
                                   isValid={isPositive}
                                   label={"Weight"}
-                                  unit={"Kg"}
+                                  unit={"kg"}
                                   generateErrorMsg={generateNumericInputErr}
                                   className={styles.input__field}
                     />
@@ -43,13 +51,12 @@ const HomeScreen = () => {
                 </div>
 
                 <div className={styles.button__container}>
-                    <button>
-                        Calculate
-                    </button>
+                    <AnimatedButton title={"Clear"}
+                                    onClick={onClickClear}
+                    />
+                    <AnimatedButton title={"Calculate"}
 
-                    <button>
-                        Clear
-                    </button>
+                    />
                 </div>
            </div>
         </div>
