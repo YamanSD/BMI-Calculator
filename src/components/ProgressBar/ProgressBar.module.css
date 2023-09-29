@@ -1,3 +1,7 @@
+:root {
+    --indicator-position: 22px;
+}
+
 .progress__bar {
     display: flex;
     border-radius: 7px;
@@ -30,4 +34,17 @@
     justify-content: center;
     position: relative;
     height: 40px;
+}
+
+.indicator {
+    border: 2px solid #ceffff;
+    top: 13px;
+    left: var(--indicator-position);
+    z-index: 10;
+    width: 5px;
+    height: 20px;
+    background-color: black;
+    position: absolute;
+    transition: all 0.5s;
+    border-radius: 5px;
 }

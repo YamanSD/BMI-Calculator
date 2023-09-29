@@ -23,12 +23,15 @@ const HomeScreen = () => {
         "#800000" // Obese
     ];
 
+    /* maximum BMI for a user that can be visualized */
+    const maxBmi = 50;
+
     /* list of upperbounds for each BMI level */
     const upperBounds = [
         BmiLevel.underweight,
         BmiLevel.healthy - BmiLevel.underweight,
         BmiLevel.overweight - BmiLevel.healthy,
-        35, // BmiLevel.obese
+        maxBmi - BmiLevel.overweight, // BmiLevel.obese
     ];
 
     /* list of categories for each BMI level */
@@ -147,15 +150,16 @@ const HomeScreen = () => {
                             {
                                 !isNaN(bmi) ? (
                                 <div className={styles.surface__2}>
+                                    {/* input good to go */}
                                     <ProgressBar progress={bmi}
-                                                 maxProgress={50}
+                                                 maxProgress={maxBmi}
                                                  upperBounds={upperBounds}
                                                  colors={colorsList}
                                                  labels={bmiCategories}
                                     />
                                     <label className={styles.bmi__value}
                                           style={{
-                                              '--bmi-label-color': getLevelColor(bmi)
+                                              '--bmi-label-color': "black"
                                           } as any}>
                                         BMI = {
                                             formatValue(bmi)
@@ -174,6 +178,7 @@ const HomeScreen = () => {
                                           '--bmi-label-color': "#800000"
                                       } as any}
                                 >
+                                    {/* user provided invalid input */}
                                     Invalid input
                                 </label>
                             )

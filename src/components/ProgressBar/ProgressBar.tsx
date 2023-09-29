@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./ProgressBar.module.css";
 
 /**
@@ -26,41 +26,71 @@ type Properties = {
 const ProgressBar = ({ progress, colors, labels,
                          maxProgress, upperBounds }: Properties) => {
     /* used to cover the entire bar */
-    const fillPercent = 9;
+    const fillPercent = 5;
+
+    /* min position for the indicator */
+    const minPosition = 1.2;
+
+    /* max position for the indicator */
+    const maxPosition = 50;
+
+    /* state variable for the indicator position */
+    const [position, setPosition] = useState(Math.max(progress, minPosition));
+
+    /* when the progress is modified, modify the position of the indicator */
+    useEffect(() => {
+        setPosition(
+            Math.max(
+                Math.min(
+                    progress,
+                    maxPosition
+                ),
+                minPosition
+            )
+        );
+    }, [progress, maxProgress]);
 
     return (
-        <div className={styles.progress__bar}>
-            {
-                colors.map((color, index) => {
-                    return (
-                        <div className={
-                                styles.progress__segment
-                                    + " "
-                                    + (
-                                        index === 0 ?
-                                        styles.left__bar : (
-                                            index === colors.length - 1
-                                                ? styles.right__bar
-                                                : ""
+        <>
+            <div className={styles.indicator}
+                 style={{
+                     "--indicator-position": `${(2 * position) * 0.95}%`
+                 } as any}
+            >
+            </div>
+            <div className={styles.progress__bar}>
+                {
+                    colors.map((color, index) => {
+                        return (
+                            <div className={
+                                    styles.progress__segment
+                                        + " "
+                                        + (
+                                            index === 0 ?
+                                            styles.left__bar : (
+                                                index === colors.length - 1
+                                                    ? styles.right__bar
+                                                    : ""
+                                            )
                                         )
-                                    )
-                            }
-                             key={index}
-                             style={{
-                                 width: `${upperBounds[index] + fillPercent}%`,
-                                 backgroundColor: color
-                             }}
-                        >
-                            <label className={styles.category}>
-                                {
-                                    labels[index]
                                 }
-                            </label>
-                        </div>
-                    );
-                })
-            }
-        </div>
+                                 key={index}
+                                 style={{
+                                     width: `${upperBounds[index] * 2 + fillPercent}%`,
+                                     backgroundColor: color
+                                 }}
+                            >
+                                <label className={styles.category}>
+                                    {
+                                        labels[index]
+                                    }
+                                </label>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </>
     );
 };
 
