@@ -1,0 +1,33 @@
+.progress__bar {
+    display: flex;
+    border-radius: 7px;
+    margin: auto;
+    width: 85vw;
+    height: 40px;
+    border: 2px solid black;
+}
+
+.category {
+    position: relative;
+    color: white;
+    font-size: small;
+    font-weight: 600;
+}
+
+.left__bar {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.right__bar {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.progress__segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 40px;
+}

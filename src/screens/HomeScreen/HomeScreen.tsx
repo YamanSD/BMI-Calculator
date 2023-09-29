@@ -1,10 +1,6 @@
 import React, {useState} from "react";
 import styles from "./HomeScreen.module.css";
-import {
-    AnimatedButton,
-    NumericInput,
-    ProgressBar
-} from "../../components";
+import {AnimatedButton, NumericInput, ProgressBar} from "../../components";
 import {
     BmiLevel,
     calculateBmi,
@@ -19,6 +15,30 @@ import {
  * @constructor
  */
 const HomeScreen = () => {
+    /* list of colors each corresponding to a BMI level */
+    const colorsList = [
+        "#ff9900", // Underweight
+        "#007570", // Healthy
+        "#ff0000", // Overweight
+        "#800000" // Obese
+    ];
+
+    /* list of upperbounds for each BMI level */
+    const upperBounds = [
+        BmiLevel.underweight,
+        BmiLevel.healthy - BmiLevel.underweight,
+        BmiLevel.overweight - BmiLevel.healthy,
+        35, // BmiLevel.obese
+    ];
+
+    /* list of categories for each BMI level */
+    const bmiCategories = [
+        "Underweight",
+        "Healthy",
+        "Overweight",
+        "Obese"
+    ];
+
     /* state for the weight of the user, in kilograms */
     const [weight, setWeight] = useState<string>("");
 
@@ -55,13 +75,13 @@ const HomeScreen = () => {
     const getLevelColor = (bmi: number) => {
         switch (calculateBmiLevel(bmi)) {
             case BmiLevel.underweight:
-                return "#ff9900";
+                return colorsList[0];
             case BmiLevel.healthy:
-                return "#007570";
+                return colorsList[1];
             case BmiLevel.overweight:
-                return "#ff0000";
+                return colorsList[2];
             case BmiLevel.obese:
-                return "#800000";
+                return colorsList[3];
         }
     }
 
@@ -69,16 +89,16 @@ const HomeScreen = () => {
      * @param bmi state variable representing user BMI.
      * @returns the category of the calculated BMI, as a string.
      */
-    const getLevelMessage = (bmi: number) => {
+    const getLevelCategory = (bmi: number) => {
         switch (calculateBmiLevel(bmi)) {
             case BmiLevel.underweight:
-                return "Underweight";
+                return bmiCategories[0];
             case BmiLevel.healthy:
-                return "Healthy";
+                return bmiCategories[1];
             case BmiLevel.overweight:
-                return "Overweight";
+                return bmiCategories[2];
             case BmiLevel.obese:
-                return "Obese";
+                return bmiCategories[3];
         }
     }
 
@@ -126,11 +146,12 @@ const HomeScreen = () => {
                         <div className={styles.bmi__container}>
                             {
                                 !isNaN(bmi) ? (
-                                <>
+                                <div className={styles.surface__2}>
                                     <ProgressBar progress={bmi}
                                                  maxProgress={50}
-                                                 colors={["red", "yellow", "blue"]}
-                                                 labels={["R", "Y", "B"]}
+                                                 upperBounds={upperBounds}
+                                                 colors={colorsList}
+                                                 labels={bmiCategories}
                                     />
                                     <label className={styles.bmi__value}
                                           style={{
@@ -144,9 +165,9 @@ const HomeScreen = () => {
                                           style={{
                                               '--bmi-label-color': getLevelColor(bmi)
                                           } as any}>
-                                        ({getLevelMessage(bmi)})
+                                        ({getLevelCategory(bmi)})
                                     </label>
-                                </>
+                                </div>
                             ) : (
                                 <label className={styles.bmi__value}
                                       style={{

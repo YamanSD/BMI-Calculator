@@ -26,7 +26,7 @@
     position: relative;
     width: 100%;
     height: 50px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .bmi__value {
@@ -52,6 +52,20 @@
     align-self: center;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
+}
+
+@keyframes FadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.surface__2 {
+    box-shadow: 5px 5px #007570;
+    border: 2px solid #007570;
+    animation: FadeIn 1s;
+    background-color: #ceffff;
+    padding: 20px 0 20px 0;
     border-radius: 15px;
 }
 
