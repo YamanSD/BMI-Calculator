@@ -65,7 +65,7 @@ const HomeScreen = () => {
      * Calculates the new BMI based on the height and width.
      */
     const onClickCalculate = () => {
-        setBmi(calculateBmi(Number(weight), Number(height)));
+        setBmi(calculateBmi(Number(weight), Number(height) / 100));
     }
 
     /**
@@ -125,7 +125,7 @@ const HomeScreen = () => {
                                   setValue={setHeight}
                                   isValid={isPositive}
                                   label={"Height"}
-                                  unit={"m"}
+                                  unit={"cm"}
                                   generateErrorMsg={generateNumericInputErr}
                                   className={styles.input__field}
                     />
