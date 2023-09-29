@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import styles from "./HomeScreen.module.css";
-import {AnimatedButton, NumericInput} from "../../components";
+import {
+    AnimatedButton,
+    NumericInput,
+    ProgressBar
+} from "../../components";
 import {
     BmiLevel,
     calculateBmi,
@@ -9,7 +13,6 @@ import {
     generateNumericInputErr,
     isPositive
 } from "../../services";
-import "./ProgressBar.css";
 
 /**
  * Home screen for the BMI calculator site.
@@ -123,41 +126,35 @@ const HomeScreen = () => {
                         <div className={styles.bmi__container}>
                             {
                                 !isNaN(bmi) ? (
-                                    <>
-                                        <div
-                                        role="progressbar"
-                                        aria-valuenow={bmi}
-                                        aria-valuemin={0}
-                                        aria-valuemax={100}
-                                        style={{
-                                            '--value': 2 * bmi,
-                                            '--color': getLevelColor(bmi)
-                                        } as any}
-                                    ></div>
-                                    <text className={styles.bmi__value}
+                                <>
+                                    <ProgressBar progress={bmi}
+                                                 maxProgress={50}
+                                                 colors={["red", "yellow", "blue"]}
+                                                 labels={["R", "Y", "B"]}
+                                    />
+                                    <label className={styles.bmi__value}
                                           style={{
                                               '--bmi-label-color': getLevelColor(bmi)
                                           } as any}>
                                         BMI = {
                                             formatValue(bmi)
                                         }
-                                    </text>
-                                    <br/>
-                                    <text className={styles.bmi__value}
+                                    </label>
+                                    <label className={styles.bmi__value}
                                           style={{
                                               '--bmi-label-color': getLevelColor(bmi)
                                           } as any}>
                                         ({getLevelMessage(bmi)})
-                                    </text>
+                                    </label>
                                 </>
                             ) : (
-                                <text className={styles.bmi__value}
+                                <label className={styles.bmi__value}
                                       style={{
                                           '--bmi-label-color': "#800000"
                                       } as any}
                                 >
                                     Invalid input
-                                </text>
+                                </label>
                             )
                             }
                         </div>
