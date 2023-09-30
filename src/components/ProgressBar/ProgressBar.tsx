@@ -29,10 +29,10 @@ const ProgressBar = ({ progress, colors, labels,
     const fillPercent = 5;
 
     /* min position for the indicator */
-    const minPosition = 1.2;
+    const minPosition = 2.5;
 
     /* max position for the indicator */
-    const maxPosition = 50;
+    const maxPosition = 49;
 
     /* state variable for the indicator position */
     const [position, setPosition] = useState(Math.max(progress, minPosition));
@@ -54,7 +54,7 @@ const ProgressBar = ({ progress, colors, labels,
         <>
             <div className={styles.indicator}
                  style={{
-                     "--indicator-position": `${(2 * position) * 0.95}%`
+                     "--indicator-position": `${(2 * position) - 2}%`
                  } as any}
             >
             </div>

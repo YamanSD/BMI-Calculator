@@ -31,13 +31,13 @@ const HomeScreen = () => {
         BmiLevel.underweight,
         BmiLevel.healthy - BmiLevel.underweight,
         BmiLevel.overweight - BmiLevel.healthy,
-        maxBmi - BmiLevel.overweight, // BmiLevel.obese
+        maxBmi - BmiLevel.overweight, // BmiLevel.obese is Infinity
     ];
 
     /* list of categories for each BMI level */
     const bmiCategories = [
         "Underweight",
-        "Healthy",
+        "Normal Weight",
         "Overweight",
         "Obese"
     ];
