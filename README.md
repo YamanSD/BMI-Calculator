@@ -23,8 +23,9 @@ BMI is a measure of body fat based on height and weight, and it is commonly used
 #### To run this project locally, follow these steps:
 
 1. Clone this repository
-2. run `npm start`
-3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. run `npm install`
+3. run `npm start`
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Disclaimer
 
