@@ -14,11 +14,12 @@ type Properties = {
     generateErrorMsg?: (value: string) => string,
     isValid?: (value: string) => boolean,
     className?: string
+    strict?: boolean
 }
 
 /**
  * Custom input component that warns the user if they provide invalid
- * numerical input. It does not prevent invalid input, only informs.
+ * numerical input and can prevent them from doing so.
  *
  * @param className passed to the component main container.
  * @param isValid takes the value, returns true if it is valid.
@@ -38,11 +39,14 @@ type Properties = {
  *        Default generates an Invalid value message.
  * @param value to pass the state to the parent component.
  * @param setValue state setter, modifies value.
+ * @param strict if not undefined, the input field does not allow the user to input
+ *        data that does not pass the isValid test.
+ *        Otherwise, the user is only informed of their error, not prevented.
  * @constructor
  */
 const NumericInput = ({ label, unit, className,
                           value, setValue, isValid,
-                            generateErrorMsg }: Properties) => {
+                            generateErrorMsg, strict }: Properties) => {
     /* state of the current error.
      * Empty indicates no error.
      */
@@ -70,13 +74,19 @@ const NumericInput = ({ label, unit, className,
                                if (error.length !== 0) {
                                    setError("");
                                }
+
+                               if (strict !== undefined) {
+                                   setValue(newValue);
+                               }
                            } else {
                                if (generateErrorMsg) { // unnecessary check, used to suppress IDE
                                    setError(generateErrorMsg(newValue));
                                }
-                           }
 
-                           setValue(newValue);
+                               if (strict === undefined) {
+                                   setValue(newValue);
+                               }
+                           }
                        }}
                        id={"inputField"}
                        className={styles.form__field}
