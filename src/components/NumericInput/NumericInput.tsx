@@ -82,10 +82,10 @@ const NumericInput = ({ label, unit, className,
                                if (generateErrorMsg) { // unnecessary check, used to suppress IDE
                                    setError(generateErrorMsg(newValue));
                                }
+                           }
 
-                               if (strict === undefined) {
-                                   setValue(newValue);
-                               }
+                           if (strict === undefined) {
+                               setValue(newValue);
                            }
                        }}
                        id={"inputField"}
