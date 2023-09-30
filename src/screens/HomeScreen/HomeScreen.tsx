@@ -116,12 +116,13 @@ const HomeScreen = () => {
             <div className={styles.surface}>
                 <div className={styles.input__container}>
                      <NumericInput value={weight}
-                                  setValue={setWeight}
-                                  isValid={isPositive}
-                                  label={"Weight"}
-                                  unit={"kg"}
-                                  generateErrorMsg={generateNumericInputErr}
-                                  className={styles.input__field}
+                                   setValue={setWeight}
+                                   isValid={isPositive}
+                                   label={"Weight"}
+                                   unit={"kg"}
+                                   generateErrorMsg={generateNumericInputErr}
+                                   className={styles.input__field}
+                                   strict // Remove to allow user to type freely
                     />
 
                     <NumericInput value={height}
@@ -131,6 +132,7 @@ const HomeScreen = () => {
                                   unit={"cm"}
                                   generateErrorMsg={generateNumericInputErr}
                                   className={styles.input__field}
+                                  strict // Remove to allow user to type freely
                     />
                 </div>
 
